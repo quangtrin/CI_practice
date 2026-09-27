@@ -1,0 +1,18 @@
+name: Self Host Workflow
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+jobs:
+  self-host-job:
+    runs-on: self-hosted
+    steps:
+      - name: Hello World Step
+        run: echo "Hello, World!"
